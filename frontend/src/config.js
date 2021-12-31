@@ -1,4 +1,5 @@
 const config = {
+  STRIPE_KEY: "pk_test_51KBs0DDA2OHcawJXgqZwyICVjjfAZwEzeZvWL4eMixM0qD7Z3NVjPEZWlHjpHxe1LaHSas9n4brqokYM3FF3ROtZ00PhosOhHO",
   MAX_ATTACHMENT_SIZE: 5000000,
   // Backend config
   s3: {
