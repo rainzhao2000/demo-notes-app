@@ -16,7 +16,7 @@ export default function Signup() {
     confirmationCode: "",
   });
   const navigate = useNavigate();
-  const [confirming, setConfirming] = useState(false);
+  const [isConfirming, setIsConfirming] = useState(false);
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,12 +43,12 @@ export default function Signup() {
         password: fields.password,
       });
       setIsLoading(false);
-      setConfirming(true);
+      setIsConfirming(true);
     } catch (e) {
       if (e.code === "UsernameExistsException") {
         try {
           await Auth.resendSignUp(fields.email);
-          setConfirming(true);
+          setIsConfirming(true);
         } catch (e2) {
           if (e2.message === "User is already confirmed.") {
             onError(e);
@@ -151,7 +151,7 @@ export default function Signup() {
 
   return (
     <div className="Signup">
-      {!confirming ? renderForm() : renderConfirmationForm()}
+      {!isConfirming ? renderForm() : renderConfirmationForm()}
     </div>
   );
 }
