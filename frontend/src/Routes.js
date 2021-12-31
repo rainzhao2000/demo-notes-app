@@ -7,16 +7,28 @@ import Signup from "./containers/Signup";
 import NewNote from "./containers/NewNote";
 import Notes from "./containers/Notes";
 import Settings from "./containers/Settings";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/notes/new" element={<NewNote />} />
-      <Route path="/notes/:id" element={<Notes />} />
-      <Route path="/settings" element={<Settings />} />
+      <Route path="/login" element={
+        <UnauthenticatedRoute element={<Login />} />
+      } />
+      <Route path="/signup" element={
+        <UnauthenticatedRoute element={<Signup />} />
+      } />
+      <Route path="/settings" element={
+        <AuthenticatedRoute element={<Settings />} />
+      } />
+      <Route path="/notes/new" element={
+        <AuthenticatedRoute element={<NewNote />} />
+      } />
+      <Route path="/notes/:id" element={
+        <AuthenticatedRoute element={<Notes />} />
+      } />
       {/* Finally, catch all unmatched routes */}
       <Route path="*" element={<NotFound />} />
     </Switch>
